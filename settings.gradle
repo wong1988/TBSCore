@@ -1,0 +1,3 @@
+rootProject.name = "TbsCoreSample"
+include ':app'
+include ':TbsCore'
