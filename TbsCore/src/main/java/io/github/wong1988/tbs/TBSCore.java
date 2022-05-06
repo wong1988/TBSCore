@@ -78,11 +78,9 @@ public class TBSCore {
         if (instance == null)
             synchronized (TBSCore.class) {
                 if (instance == null) {
-
+                    mAppContext = appContext;
                     if (mAppContext == null)
                         throw new RuntimeException("appContext is null");
-
-                    mAppContext = appContext;
                     mDownloadWithoutWifi = downloadWithoutWifi;
                     instance = new TBSCore();
                 }
