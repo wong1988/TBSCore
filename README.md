@@ -21,4 +21,9 @@ Step 3. 在Application进行初始化
 ```
 TBSCore.init(application,true);
 ```
- 
+Step 4. 清单文件配置 networkSecurityConfig(部分内核功能访问需要依赖http请求)
+```
+<application
+    ...
+     android:networkSecurityConfig="@xml/xxx">
+```
