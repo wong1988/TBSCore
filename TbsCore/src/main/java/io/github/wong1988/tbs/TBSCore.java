@@ -9,6 +9,7 @@ import com.tencent.smtt.sdk.TbsDownloader;
 import com.tencent.smtt.sdk.TbsListener;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 初始化X5
@@ -23,7 +24,7 @@ public class TBSCore {
 
     private TBSCore() {
 
-        HashMap map = new HashMap();
+        Map<String, Object> map = new HashMap<>();
         map.put(TbsCoreSettings.TBS_SETTINGS_USE_SPEEDY_CLASSLOADER, true);
         map.put(TbsCoreSettings.TBS_SETTINGS_USE_DEXLOADER_SERVICE, true);
         QbSdk.initTbsSettings(map);
@@ -33,6 +34,7 @@ public class TBSCore {
                 new TbsListener() {
                     @Override
                     public void onDownloadFinish(int progress) {
+                        // 不在这里进行判断下载，否则可能调用好多次
                         Log.e("QbSdk", "onDownloadFinish -->下载X5内核完成：" + progress);
                     }
 
