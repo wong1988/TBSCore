@@ -1,17 +1,23 @@
 package io.github.wong1988.tbs;
 
+import android.Manifest;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
+
+import androidx.annotation.RequiresPermission;
 
 import com.tencent.smtt.sdk.TbsReaderView;
 
 public class TbsReader {
 
     /**
+     * 注意：需要读取权限
+     *
      * @param localPath 本地文件地址
      * @return =null说明不可加载 !=null 添加到布局里即可
      */
+    @RequiresPermission(allOf = {Manifest.permission.READ_EXTERNAL_STORAGE})
     public static TbsReaderView preOpen(Context context, String localPath) {
 
         // 通过bundle把文件传给x5,打开的事情交由x5处理
