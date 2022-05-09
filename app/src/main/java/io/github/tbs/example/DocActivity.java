@@ -1,7 +1,6 @@
 package io.github.tbs.example;
 
 import android.os.Bundle;
-import android.os.Environment;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
@@ -27,8 +26,6 @@ public class DocActivity extends AppCompatActivity {
         FrameLayout frameLayout = (FrameLayout) findViewById(R.id.layout);
 
         String copyUrl = new File(getExternalFilesDir(null).getAbsolutePath() + File.separator + "test.docx").getAbsolutePath();
-
-//        String absolutePath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath() + "/TestDoc.doc";
 
         try {
             copyFile(getAssets().open("测试.docx"), copyUrl);

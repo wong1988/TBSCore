@@ -42,8 +42,9 @@ public class TbsReader {
     private static String parseFileType(String path) {
         if (TextUtils.isEmpty(path))
             return "";
-        else
-            return path.substring(path.lastIndexOf(".") + 1);
+        if (!path.contains("."))
+            return "";
+        return path.substring(path.lastIndexOf(".") + 1);
     }
 
     /**
