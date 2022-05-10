@@ -2,12 +2,20 @@ package io.github.wong1988.tbs;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 
 import androidx.annotation.RequiresPermission;
 
 import com.tencent.smtt.sdk.TbsReaderView;
+import com.tencent.smtt.utils.FileProvider;
+
+import java.io.File;
+
+import io.github.wong1988.tbs.utils.MediaFile;
 
 public class TbsReader {
 
@@ -59,5 +67,34 @@ public class TbsReader {
     public static void stopTbsReader(TbsReaderView tbsReaderView) {
         if (tbsReaderView != null)
             tbsReaderView.onStop();
+    }
+
+    /**
+     * 注意：需要读取权限
+     * 使用第三方App打开文件
+     */
+    @RequiresPermission(allOf = {Manifest.permission.READ_EXTERNAL_STORAGE})
+    public static void openByThirdPartyApp(String localPath) {
+
+        String mimeTypeForFile = MediaFile.getMimeTypeForFile(localPath);
+
+        if (mimeTypeForFile == null)
+            mimeTypeForFile = "*/*";
+
+
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        if (Build.VERSION.SDK_INT >= 24) {
+            Uri uri = FileProvider.a(TBSCore.getAppContext(), "io.github.wong1988.tbs.provider", new File(localPath));
+            intent.setDataAndType(uri, mimeTypeForFile);
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+        } else {
+            intent.setDataAndType(Uri.fromFile(new File(localPath)), mimeTypeForFile);
+        }
+
+        TBSCore.getAppContext().startActivity(intent);
+
     }
 }

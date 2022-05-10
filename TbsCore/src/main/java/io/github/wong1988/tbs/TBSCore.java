@@ -89,4 +89,9 @@ public class TBSCore {
             }
     }
 
+    public static Application getAppContext() {
+        if (mAppContext == null)
+            throw new RuntimeException("Please invoke TBSCore.init() on Application#onCreate()");
+        return mAppContext;
+    }
 }
