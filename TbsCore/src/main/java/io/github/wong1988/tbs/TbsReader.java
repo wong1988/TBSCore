@@ -86,7 +86,7 @@ public class TbsReader {
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
         if (Build.VERSION.SDK_INT >= 24) {
-            Uri uri = FileProvider.a(TBSCore.getAppContext(), "io.github.wong1988.tbs.provider", new File(localPath));
+            Uri uri = FileProvider.a(TBSCore.getAppContext(), TBSCore.getAppId() + ".tbs.provider", new File(localPath));
             intent.setDataAndType(uri, mimeTypeForFile);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);

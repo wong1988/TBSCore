@@ -14,7 +14,7 @@ allprojects {
 Step 2. Add the dependency
 ```
 dependencies {
-    implementation 'com.github.wong1988:TBSCore:1.0.0'
+    implementation 'com.github.wong1988:TBSCore:1.0.1'
 }
 ```
 Step 3. 在Application进行初始化

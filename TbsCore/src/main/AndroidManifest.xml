@@ -15,7 +15,7 @@
 
         <provider
             android:name="com.tencent.smtt.utils.FileProvider"
-            android:authorities="io.github.wong1988.tbs.provider"
+            android:authorities="${applicationId}.tbs.provider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

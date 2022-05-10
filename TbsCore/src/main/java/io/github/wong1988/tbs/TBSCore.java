@@ -19,10 +19,13 @@ public class TBSCore {
     private static TBSCore instance;
 
     private static Application mAppContext;
+    private static String mAppId;
     private static boolean mDownloadWithoutWifi;
 
 
     private TBSCore() {
+
+        mAppId = mAppContext.getApplicationInfo().packageName;
 
         Map<String, Object> map = new HashMap<>();
         map.put(TbsCoreSettings.TBS_SETTINGS_USE_SPEEDY_CLASSLOADER, true);
@@ -93,5 +96,11 @@ public class TBSCore {
         if (mAppContext == null)
             throw new RuntimeException("Please invoke TBSCore.init() on Application#onCreate()");
         return mAppContext;
+    }
+
+    public static String getAppId() {
+        if (mAppContext == null)
+            throw new RuntimeException("Please invoke TBSCore.init() on Application#onCreate()");
+        return mAppId;
     }
 }
