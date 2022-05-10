@@ -1,5 +1,6 @@
 package io.github.tbs.example;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.widget.FrameLayout;
 import android.widget.Toast;
@@ -18,6 +19,7 @@ public class DocActivity extends AppCompatActivity {
 
     private TbsReaderView tbsReaderView;
 
+    @SuppressLint("MissingPermission")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
